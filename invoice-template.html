@@ -1,0 +1,383 @@
+<style>
+:root {
+	--colors-blue: rgb(66, 133, 244);
+}
+
+HTML, body {
+	margin: 0;
+	font-family: sans-serif;
+	padding: 0;
+	background: #f2f2f2;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.invoice {
+	width: 850px;
+	border: 1px solid rgba(0,0,0,0.1);
+	margin: 0 auto;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	background: #fff;
+	position: relative;
+	color: #3b3b3b;
+}
+
+.invoice-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px 23px;
+	background: var(--colors-blue);
+	color: #fff;
+	margin: -1px;
+	margin-bottom: 0;
+}
+
+.invoice-header > div {
+	margin: 0 auto;
+}
+
+.invoice .account-name {
+	font-size: 18px;
+}
+
+.invoice .invoice-type {
+	font-size: 50px;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.invoice .account-line {
+	text-align: right;
+	line-height: 23px;
+	font-size: 15px;
+	color: #efefef;
+}
+
+.invoice .invoice-details {
+	padding: 55px 61px;
+}
+
+.invoice .invoice-detail-row {
+	display: flex;
+	align-items: center;
+}
+
+.invoice-detail-row.detail-1 {
+	margin: -55px -61px;
+	margin-bottom: 61px;
+	padding: 10px 55px;
+	border-bottom: 1px solid rgba(0,0,0,0.03);
+	background: rgba(0, 0, 0, 0.02);
+}
+
+.invoice-details .invoice-detail-row.detail-2 > div {
+	margin-right: 70px;
+}
+
+.invoice .line-label {
+	font-size: 13px;
+	color: #9E9E9E;
+}
+
+.invoice .detail-line {
+	color: #262626;
+	line-height: 17px;
+	font-size: 15px;
+	margin-top: 1px;
+}
+
+.invoice .detail-line2 {
+	background: var(--colors-blue);
+	color: #fff;
+	padding: 2px 3px;
+	border-radius: 5px;
+	line-height: 17px;
+	font-size: 15px;
+	margin-top: 1px;
+}
+
+.detail-total {
+	text-align: right;
+	font-size: 51px;
+	font-weight: 300;
+	color: #4c4c4c;
+	margin-right: -6px;
+}
+
+.invoice-lines {
+	padding: 25px 31px;
+	padding-top: 10px;
+}
+
+.invoice-sep {
+	height: 3px;
+	background: #d8d8d8;
+	margin: 0;
+}
+
+.line-descriptions {
+	text-align: center;
+	margin: 5px -6px;
+	display: flex;
+	padding: 11px 6px;
+	font-weight: bold;
+	background: rgb(242, 242, 242);
+}
+
+.line-descriptions:first-of-type {
+	border-top: 4px solid var(--colors-blue);
+}
+
+.lines .line {
+	display: flex;
+	font-size: 14px;
+	text-align: center;
+	padding: 2px 0;
+}
+
+.lines .lines-total .underline {
+	width: 55px;
+	background: #a9a9a9;
+	height: 1px;
+	margin-top: 2px;
+	margin-left: auto;
+}
+
+.lines-total .line-total-amount {
+	width: 66px;
+	margin-left: auto;
+	font-size: 14px;
+	text-align: right;
+	margin-top: 4px;
+	font-weight: bold;
+	color: #3b3b3b;
+	margin-bottom: 10px;
+}
+
+/* Line Proportions */
+.line span, .line select {
+	transition: background 0.1s ease;
+	cursor: pointer;
+}
+
+.line span:not(.Tech1):hover {
+	background: #f1f5f7;
+	border-radius: 3px;
+}
+
+.invoice .invoice-lines .PartNo {
+	text-align: left;
+	width: 11%;
+}
+
+.invoice .invoice-lines .JobDesc {
+	text-align: left;
+	width: 52%;
+}
+
+.invoice .invoice-lines .Tech1 {
+	width: 13%;
+}
+
+.invoice .invoice-lines select {
+	border-width: 0px;
+	border-style: solid;
+	border-color: transparent;
+	border-image: initial;
+	outline: none;
+	background: #f2f2f2;
+}
+
+.invoice .invoice-lines .Quantity {
+	width: 8%;
+}
+
+.invoice .invoice-lines .Price {
+	width: 8%;
+}
+
+.invoice .invoice-lines .Total {
+	width: 8%;
+	text-align: right;
+}
+
+/* End of: Line Proportions */
+
+/* Add Line */
+.line.add-line {
+	margin-bottom: -21px;
+	color: #9E9E9E;
+}
+
+.line.add-line .JobDesc, .line.add-line .PartNo {
+	background: #f1f5f7;
+	border-radius: 3px;
+	padding: 3px 5px;
+	margin: 0 3px;
+}
+
+.line.add-line .PartNo {
+	width: calc(11% - 17px);
+	margin-left: 0;
+}
+
+.add-line select {
+	background: #f2f2f2;
+}
+/* End of: Add Line */
+</style>
+
+<html>
+	<div class='invoice'>
+		<div class='invoice-header'>
+			<div>
+				<div class='account-name'>My Company</div>
+				<div class='invoice-type'>Invoice</div>
+			</div>
+			<div>
+				<div class='account-line'>info@company.com</div>
+				<div class='account-line'>www.company.com</div>
+				<div class='account-line'>Tel: (410) 700 6498</div>
+			</div>
+			<div>
+				<div class='account-line'>75001 N. Ford Ave</div>
+				<div class='account-line'>Rockford, VA 20000</div>
+				<div class='account-line'>Fax: (410) 800 6498</div>
+			</div>
+		</div>
+		<div class='invoice-details'>
+			<div class='invoice-detail-row detail-1'>
+				<div class='line-label' style='margin-left: auto'>Employee Number:&nbsp;</div>
+				<div class='detail-line2' style='margin-right: 15px'>#1</div>
+
+				<div class='line-label'>Invoice Number:&nbsp;</div>
+				<div class='detail-line2' style='margin-right: 15px'>#40923</div>
+
+				<div class='line-label'>Invoice Date:&nbsp;</div>
+				<div class='detail-line2'>08/21/2018</div>
+			</div>
+			<div class='invoice-detail-row detail-2'>
+				<div>
+					<div class='line-label'>Customer Info</div>
+					<div class='detail-line'>Test E. Testimony</div>
+					<div class='detail-line'>404 Not Found Ave.</div>
+					<div class='detail-line'>Townsville MI, 20794</div>
+					<div class='detail-line'>408-209-0309</div>
+				</div>
+				<div>
+					<div class='line-label'>Vehicle Info</div>
+					<div class='detail-line'>2009 BMW 335i</div>
+					<div class='detail-line'>3.0L Twin-Turbo N54B30A</div>
+					<div class='detail-line'><b>VIN</b>: XYZ9902949249281</div>
+					<div class='detail-line'><b>Mileage</b>: 59,103</div>
+				</div>
+				<div style='margin: 0; margin-left: auto'>
+					<div class='line-label' style='text-align: right'>Total Due</div>
+					<div class='detail-total' style='text-align: right'>$40.11</div>
+				</div>
+			</div>
+		</div>
+		<div class='invoice-lines'>
+			<!-- Labors -->
+			<div class='line-descriptions'>
+				<span class='PartNo'></span>
+				<span class='JobDesc'>Labor</span>
+				<span class='Tech1'>Tech</span>
+				<span class='Quantity'>Qty</span>
+				<span class='Price'>Price</span>
+				<span class='Total'>Amount</span>
+			</div>
+			<div class='lines'>
+				<div class='line'>
+					<span class='PartNo'>No Charge</span>
+					<span class='JobDesc'>R&R Both Air Fuel Ratio Sensors</span>
+					<span class='Tech1'><select><option selected>DW</option></select></span>
+					<span class='Quantity'>1.50</span>
+					<span class='Price'>$85.00</span>
+					<span class='Total'>$127.50</span>
+				</div>
+				<div class='line add-line'>
+					<span class='PartNo'></span>
+					<span class='JobDesc'>..add a labor</span>
+					<span class='Tech1'></span>
+					<span class='Quantity'>0.00</span>
+					<span class='Price'>$0.00</span>
+					<span class='Total'></span>
+				</div>
+				<div class='lines-total'>
+					<div class='underline'></div>
+					<div class='underline'></div>
+					<div class='line-total-amount'>
+						<div>$119.50</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Parts -->
+			<div class='line-descriptions'>
+				<span class='PartNo'>Part No.</span>
+				<span class='JobDesc'>Parts</span>
+				<span class='Tech1'></span>
+				<span class='Quantity'>Qty</span>
+				<span class='Price'>Price</span>
+				<span class='Total'>Amount</span>
+			</div>
+			<div class='lines'>
+				<div class='line'>
+					<span class='PartNo'>193</span>
+					<span class='JobDesc'>OEM Repl. Honda/Acura Brake Light bulb</span>
+					<span class='Tech1'></span>
+					<span class='Quantity'>2.00</span>
+					<span class='Price'>$4.23</span>
+					<span class='Total'>$8.46</span>
+				</div>
+				<div class='line add-line'>
+					<span class='PartNo'></span>
+					<span class='JobDesc'>..add a part</span>
+					<span class='Tech1'></span>
+					<span class='Quantity'>0.00</span>
+					<span class='Price'>$0.00</span>
+					<span class='Total'></span>
+				</div>
+				<div class='lines-total'>
+					<div class='underline'></div>
+					<div class='underline'></div>
+					<div class='line-total-amount'>
+						<div>$8.46</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Service Charges -->
+			<div class='line-descriptions'>
+				<span class='JobDesc'>Service Charges</span>
+				<span class='PartNo'></span>
+				<span class='Tech1'></span>
+				<span class='Quantity'></span>
+				<span class='Price'></span>
+				<span class='Total'>Amount</span>
+			</div>
+			<div class='lines'>
+				<div class='line'>
+					<span class='JobDesc'>Misc Shop Supplies, Cleaners, Lubricants</span>
+					<span class='PartNo'></span>
+					<span class='Tech1'></span>
+					<span class='Quantity'></span>
+					<span class='Price'></span>
+					<span class='Total'>$8.46</span>
+				</div>
+			</div>
+
+			<!-- Totals/Notes -->
+			<div class='line-descriptions'>
+				<span class='PartNo'>Notes</span>
+				<span class='JobDesc'></span>
+				<span class='Tech1'></span>
+				<span class='Quantity'></span>
+				<span class='Price'></span>
+				<span class='Total'>Amount</span>
+			</div>
+		</div>
+	</div>
+</html>
